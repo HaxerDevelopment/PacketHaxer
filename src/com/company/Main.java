@@ -6,7 +6,7 @@ public class Main {
 
     public static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
     public static void main(String[] args) throws Exception{
-        UI.InitializeUI();
+        UI.initializeUI();
         System.out.println("Enter packet to hax\n");
         //String s = reader.readLine();
         //int a = Integer.parseInt(s);
