@@ -1,9 +1,9 @@
-import io.haxerdevelopment.Plugins.BasicPlugin;
-import io.haxerdevelopment.Plugins.Plugin;
+import io.haxerdevelopment.plugins.BasicPlugin;
+import io.haxerdevelopment.plugins.Plugin;
 
 module core {
         requires java.desktop;
-        exports io.haxerdevelopment.Plugins;
+        exports io.haxerdevelopment.plugins;
 
         uses Plugin;
         provides Plugin with BasicPlugin;

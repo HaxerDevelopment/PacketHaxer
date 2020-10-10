@@ -1,4 +1,4 @@
-package io.haxerdevelopment.Plugins;
+package io.haxerdevelopment.plugins;
 
 import java.util.List;
 import java.util.ServiceLoader;

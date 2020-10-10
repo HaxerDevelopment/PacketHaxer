@@ -1,5 +1,5 @@
 import io.haxerdevelopment.HaxPlugin;
-import io.haxerdevelopment.Plugins.Plugin;
+import io.haxerdevelopment.plugins.Plugin;
 module haxPlugin {
     requires core;
 

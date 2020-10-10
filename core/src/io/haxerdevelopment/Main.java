@@ -10,7 +10,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
-import io.haxerdevelopment.Plugins.Plugin;
+import io.haxerdevelopment.plugins.Plugin;
 
 public class Main {
 

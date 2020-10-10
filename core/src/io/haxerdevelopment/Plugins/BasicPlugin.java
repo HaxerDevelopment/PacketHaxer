@@ -1,4 +1,4 @@
-package io.haxerdevelopment.Plugins;
+package io.haxerdevelopment.plugins;
 
 public class BasicPlugin implements Plugin{
     @Override

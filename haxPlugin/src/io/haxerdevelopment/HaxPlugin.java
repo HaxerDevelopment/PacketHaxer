@@ -1,6 +1,6 @@
 package io.haxerdevelopment;
 
-import io.haxerdevelopment.Plugins.Plugin;
+import io.haxerdevelopment.plugins.Plugin;
 
 public class HaxPlugin implements Plugin {
 
