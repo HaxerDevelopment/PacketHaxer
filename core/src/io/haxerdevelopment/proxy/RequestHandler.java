@@ -90,8 +90,17 @@ public class RequestHandler implements Runnable {
 
                 writer.write(line); // Send header information
 
-                while((line = serverReader.readLine()) != null) // Read content of page line-by-line
-                    writer.write(line); // ...and send it to client
+                //while((line = serverReader.readLine()) != null) // Read content of page line-by-line
+                //    writer.write(line); // ...and send it to client
+                URL urlTemp = new URL("https://www.anilibria.tv");
+                BufferedReader in = new BufferedReader(new InputStreamReader(urlTemp.openStream()));
+                String inputLine, s="";
+                s="<html><body style=\"margin: 0px; background: #0e0e0e;\"><img style=\"-webkit-user-select: none;margin: auto;\" src=\"https://memepedia.ru/wp-content/uploads/2019/05/a84.png\"></body></html>";
+
+                while ((inputLine = in.readLine()) != null)
+                {
+                    writer.write(inputLine);
+                }
                 System.out.println("answered");
             }
             else // If response code is not 200, show sad page ;c
