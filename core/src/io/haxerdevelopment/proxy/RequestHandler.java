@@ -3,6 +3,8 @@ package io.haxerdevelopment.proxy;
 import io.haxerdevelopment.Globals;
 import io.haxerdevelopment.Main;
 
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 import java.io.*;
 import java.net.*;
 
@@ -114,6 +116,8 @@ public class RequestHandler implements Runnable {
                     writer.write(inputLine);
                 } */
 
+                DefaultTableModel model = (DefaultTableModel) Globals.userInterface.table1.getModel();
+                model.addRow(new Object[] {"localhost", url});
                 System.out.println("answered");
             }
             else // If response code is not 200, show sad page ;c

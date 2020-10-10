@@ -14,8 +14,6 @@ public class Main {
     public static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
     public static void main(String[] args) throws Exception{
-        UI.initializeUI();
-
         // Rule tests
         // No matter what, they are executed in order:
         // 1. Global (first in first out)
@@ -29,7 +27,7 @@ public class Main {
         Globals.replaceManager.replaceRules.add(rule);
         rule = new ReplaceRule();
         rule.type = ReplaceType.OVERRIDE; // And now do it for only target website
-        rule.replace = "AniDUB sucks, but as for now no AniLibria here";
+        rule.replace = "Here was Eimaen";
         rule.isGlobal = false;
         rule.url = "info.cern.ch";
         Globals.replaceManager.replaceRules.add(rule);
@@ -53,17 +51,7 @@ public class Main {
             CommonProxyHTTP proxyHTTP = new CommonProxyHTTP(8888);
             proxyHTTP.listen();
         }).start();
-        System.out.println("Enter packet to hax\n");
-        //String s = reader.readLine();
-        //int a = Integer.parseInt(s);
-        System.out.println("Let's hack some packets");
-        Thread.sleep(1000);
-        for (int i = 0; i <= 100; i++) {
-            System.out.println(i+"%");
-            //UI.label1.setText(i + "%");
-            Thread.sleep((100));
-        }
-        System.out.println("Successfully hacked");
+        System.out.println("Successfully loaded!");
     }
 
 }
