@@ -27,8 +27,32 @@ public class ReplaceManager {
         replaceRules = (ArrayList<ReplaceRule>) oin.readObject();
     }
 
-    public String replace(String string) {
+    public String replace(String url, String string)
+    {
+        string = replaceGlobal(string);
+        string = replaceDependent(url, string);
+        return string;
+    }
+
+    public String replaceDependent(String url, String string)
+    {
         for (ReplaceRule rule : replaceRules) {
+            if (rule.isGlobal || !url.contains(rule.url))
+                continue;
+            switch (rule.type)
+            {
+                case PLAIN -> string = string.replace(rule.match, rule.replace);
+                case REGEX -> string = regularExpressionReplacer.processString(string, rule.match, rule.replace);
+                case OVERRIDE -> string = rule.replace;
+            }
+        }
+        return string;
+    }
+
+    public String replaceGlobal(String string) {
+        for (ReplaceRule rule : replaceRules) {
+            if (!rule.isGlobal)
+                continue;
             switch (rule.type)
             {
                 case PLAIN -> string = string.replace(rule.match, rule.replace);
