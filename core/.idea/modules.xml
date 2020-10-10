@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/PacketHaxer.iml" filepath="$PROJECT_DIR$/PacketHaxer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../haxPlugin/haxPlugin.iml" filepath="$PROJECT_DIR$/../haxPlugin/haxPlugin.iml" />
     </modules>
   </component>
 </project>

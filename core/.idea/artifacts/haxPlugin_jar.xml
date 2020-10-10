@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="haxPlugin:jar">
+    <output-path>$PROJECT_DIR$/../output/Plugins</output-path>
+    <root id="archive" name="haxPlugin.jar">
+      <element id="module-output" name="haxPlugin" />
+    </root>
+  </artifact>
+</component>

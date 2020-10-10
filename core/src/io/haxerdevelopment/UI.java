@@ -1,23 +1,25 @@
-package com.company;
-
-import org.w3c.dom.css.RGBColor;
+package io.haxerdevelopment;
 
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class UI {
 
     static Frame frame = new Frame("Haxer");
     static JFrame jframe = new JFrame("JHaxer");
+    public static JLabel jlabel= new JLabel("000000000000");
     public static Label label1 = new Label("100");
-    static Button b2 = new Button("2");
+    public static Button b2 = new Button("2");
     static Button b1 = new Button("1");
 
     public static void initializeUI(){
         initializeAwtUI();
-        initializeSwingUI();
+        //initializeSwingUI();
+
     }
     static void initializeSwingUI(){
         jframe.setSize(1200, 600);
@@ -29,12 +31,14 @@ public class UI {
         buttons.setBounds(0,0, 1200, 600);
         buttons.add(jB1);
         buttons.add(jB2);
-
+        buttons.add(jlabel);
+        //jlabel.setLocation(100, 200);
         buttons.setBackground(new Color(255,0,0,100));
         jB1.setBackground(new Color(0,255,0,50));
         jB1.setBounds(0,0,640, 300);
         jB2.setSize(1000, 300);
-        jframe.add(buttons);
+        jframe.add(jlabel);
+        //jframe.add(buttons);
 //        jframe.add(jB1);
 //        jframe.add(jB2);
 
@@ -56,10 +60,16 @@ public class UI {
             }
         };
         b2.addActionListener(b2L);
-        b2.setBackground(Color.blue);
-        b1.setBackground(Color.blue);
+        b2.setBackground(Color.white);
+        b1.setBackground(Color.white);
         frame.add(b1);
         frame.add(b2);
         frame.add(label1);
+        frame.addWindowListener(new WindowAdapter() {
+                                public void windowClosing(WindowEvent we) {
+                                    System.exit(0);
+                                }
+                            }
+        );
     }
 }
