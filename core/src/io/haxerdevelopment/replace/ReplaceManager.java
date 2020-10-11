@@ -1,5 +1,10 @@
 package io.haxerdevelopment.replace;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -63,6 +68,17 @@ public class ReplaceManager {
         else return "Server responded with error code " + conn.getResponseCode() + "<br><i>PacketHaxer v1.0</i>";
     }
 
+    public String replaceQuery(String string, String query, String value)
+    {
+        Document document = Jsoup.parse(string);
+        Elements elements = document.select(query);
+        for (Element element : elements) {
+            element.html(value);
+        };
+        System.out.println(document.html());
+        return document.html();
+    }
+
     public String replaceDependent(String url, String string)
     {
         for (ReplaceRule rule : replaceRules) {
@@ -78,7 +94,9 @@ public class ReplaceManager {
                             "<meta http-equiv=\"refresh\" content=\"0;URL=" + rule.replace + "\" />\n" +
                             "</head>";
                     case OVERRIDE_PAGE -> string = readAllPageData(rule.replace);
+                    case QUERY -> string = replaceQuery(string, rule.match, rule.replace);
                 }
+
             }
             catch (IOException exception) {
                 continue;
@@ -101,6 +119,7 @@ public class ReplaceManager {
                             "<meta http-equiv=\"refresh\" content=\"1;URL=" + rule.replace + "\" />\n" +
                             "</head>";
                     case OVERRIDE_PAGE -> string = readAllPageData(rule.replace);
+                    case QUERY -> string = replaceQuery(string, rule.match, rule.replace);
                 }
             }
             catch (IOException exception) {

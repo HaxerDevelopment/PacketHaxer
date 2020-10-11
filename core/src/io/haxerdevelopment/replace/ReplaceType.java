@@ -5,5 +5,6 @@ public enum ReplaceType {
     REGEX,
     OVERRIDE,
     OVERRIDE_PAGE,
-    REDIRECT
+    REDIRECT,
+    QUERY
 }

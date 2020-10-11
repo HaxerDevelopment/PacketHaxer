@@ -25,12 +25,12 @@ public class Main {
         rule.replace = "o";
         rule.isGlobal = true;
         Globals.replaceManager.replaceRules.add(rule);
-        rule = new ReplaceRule();
+        /*rule = new ReplaceRule();
         rule.type = ReplaceType.OVERRIDE; // And now do it for only target website
         rule.replace = "Here was Eimaen";
         rule.isGlobal = false;
         rule.url = "info.cern.ch";
-        Globals.replaceManager.replaceRules.add(rule);
+        Globals.replaceManager.replaceRules.add(rule);*/
         rule = new ReplaceRule();
         rule.type = ReplaceType.PLAIN; // We can also replace content of the page
         rule.match = "o";
@@ -49,6 +49,12 @@ public class Main {
         rule.replace = "https://google.com"; // to the original one
         rule.isGlobal = false;
         rule.url = "iberianodonataucm.myspecies.info";
+        Globals.replaceManager.replaceRules.add(rule);
+        rule = new ReplaceRule();
+        rule.type = ReplaceType.QUERY; // Use jsoup library to replace using css query
+        rule.match = "title";
+        rule.replace = "INSANE PACKETHAXER TEST";
+        rule.isGlobal = true;
         Globals.replaceManager.replaceRules.add(rule);
         /*
         rule = new ReplaceRule(); // Removed because too toxic
