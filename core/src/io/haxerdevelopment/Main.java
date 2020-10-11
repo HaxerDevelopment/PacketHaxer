@@ -38,6 +38,18 @@ public class Main {
         rule.isGlobal = false;
         rule.url = "e-m-b.org";
         Globals.replaceManager.replaceRules.add(rule);
+        rule = new ReplaceRule();
+        rule.type = ReplaceType.OVERRIDE_PAGE; // Simple example loading another page
+        rule.replace = "https://google.com";
+        rule.isGlobal = false;
+        rule.url = "scratchpads.eu";
+        Globals.replaceManager.replaceRules.add(rule);
+        rule = new ReplaceRule();
+        rule.type = ReplaceType.REDIRECT; // It works in another way, it doesn't fetch fake page, but redirects you
+        rule.replace = "https://google.com"; // to the original one
+        rule.isGlobal = false;
+        rule.url = "iberianodonataucm.myspecies.info";
+        Globals.replaceManager.replaceRules.add(rule);
         /*
         rule = new ReplaceRule(); // Removed because too toxic
         rule.type = ReplaceType.REGEX; // Meet RegEx
