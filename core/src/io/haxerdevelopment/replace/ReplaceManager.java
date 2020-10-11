@@ -1,10 +1,12 @@
 package io.haxerdevelopment.replace;
 
+import io.haxerdevelopment.Globals;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import javax.swing.table.DefaultTableModel;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -20,6 +22,20 @@ public class ReplaceManager {
     public ReplaceManager() {
         replaceRules = new ArrayList<ReplaceRule>();
         regularExpressionReplacer = new RegexReplacer();
+    }
+
+    public void addRule(ReplaceRule rule){
+        replaceRules.add(rule);
+        Globals.userInterface.rulesWindow.addRule(rule);
+    }
+
+    public void removeRule(ReplaceRule rule) {
+        Globals.userInterface.rulesWindow.removeRule(rule);
+        replaceRules.removeIf(r -> rule.type == r.type && rule.isGlobal == r.isGlobal && rule.replace.equals(r.replace) && rule.match.equals(r.match) && rule.url.equals(r.url));
+    }
+
+    public void removeRule(int index) {
+        replaceRules.remove(index);
     }
 
     public void saveRules(String filePath) throws IOException {

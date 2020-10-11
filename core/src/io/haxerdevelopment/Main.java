@@ -19,7 +19,7 @@ public class Main {
         // 1. Global (first in first out)
         // 2. Targetted (first in first out)
         // TODO: Make override's priority higher than others'
-        ReplaceRule rule = new ReplaceRule();
+        /*ReplaceRule rule = new ReplaceRule();
         rule.type = ReplaceType.QUERY;
         rule.match = "title";
         rule.replace = "INSANE PACKETHAXER TEST";
@@ -31,7 +31,14 @@ public class Main {
         rule.replace = "Fl3x Text";
         rule.isGlobal = true;
         Globals.replaceManager.replaceRules.add(rule);
-        Globals.replaceManager.saveRules("rules.yarik-package");
+        Globals.replaceManager.saveRules("rules.yarik-package");*/
+        ReplaceRule rule = new ReplaceRule();
+        rule.type = ReplaceType.REDIRECT;
+        //rule.match = "a";
+        rule.isGlobal=true;
+        rule.replace = "https://www.anilibria.tv";
+
+        Globals.replaceManager.addRule(rule);
 
         new Thread(() -> {
             CommonProxyHTTP proxyHTTP = new CommonProxyHTTP(8888);
