@@ -5,35 +5,70 @@ import io.haxerdevelopment.replace.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.event.*;
 
 public class RulesWindow {
     private JPanel panel1;
     public JFrame frame;
     private JTable table1;
-    private JButton button1;
+    private JButton deleteButton;
+    private JTextField textField5;
+    private JTextField textField2;
+    private JTextField textField3;
+    private JTextField textField4;
+    private JButton addButton;
+    private JComboBox comboBox1;
+    private JCheckBox isGlobalCheckBox;
 
     public RulesWindow() {
         frame = new JFrame();
-        table1.setModel(new DefaultTableModel(new Object[] {"Type", "URL", "Match", "Replace", "IsGlobal"}, 0));
+        comboBox1.addItem(ReplaceType.OVERRIDE);
+        comboBox1.addItem(ReplaceType.REDIRECT);
+        comboBox1.addItem(ReplaceType.OVERRIDE_PAGE);
+        comboBox1.addItem(ReplaceType.PLAIN);
+        comboBox1.addItem(ReplaceType.QUERY);
+        comboBox1.addItem(ReplaceType.REGEX);
+        table1.setModel(new DefaultTableModel(new Object[] {"Type", "URL", "Match", "Replace", "IsGlobal"}, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        });
         DefaultTableModel model = (DefaultTableModel) table1.getModel();
         model.addRow(new Object[] {"Type", "URL", "match", "replace", "isGlobal"});
-        frame.setSize(640, 310);
+        frame.setSize(1050, 310);
         frame.setContentPane(panel1);
-        frame.setVisible(true);
+        frame.setVisible(false);
         WindowAdapter adapter = new WindowAdapter() {
             public void windowClosing(WindowEvent we) {
                 frame.setVisible(false);
             }
         };
         frame.addWindowListener(adapter);
-        button1.addActionListener(new ActionListener() {
+        deleteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 removeSelected();
+            }
+        });
+        addButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ReplaceRule rule = new ReplaceRule();
+                rule.type = (ReplaceType)comboBox1.getSelectedItem() ;
+                rule.url = textField2.getText();
+                rule.match = textField3.getText();
+                rule.replace = textField4.getText();
+                rule.isGlobal = isGlobalCheckBox.isSelected();
+                Globals.replaceManager.addRule(rule);
+            }
+        });
+        table1.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if(e.getKeyCode()== KeyEvent.VK_DELETE)
+                    removeSelected();
+                super.keyTyped(e);
             }
         });
     }
