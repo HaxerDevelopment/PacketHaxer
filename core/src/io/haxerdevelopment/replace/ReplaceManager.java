@@ -75,7 +75,6 @@ public class ReplaceManager {
         for (Element element : elements) {
             element.html(value);
         };
-        System.out.println(document.html());
         return document.html();
     }
 

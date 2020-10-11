@@ -1,6 +1,8 @@
 package io.haxerdevelopment.replace;
 
-public class ReplaceRule {
+import java.io.Serializable;
+
+public class ReplaceRule implements Serializable {
     public ReplaceType type;
     public String url;
     public String match;

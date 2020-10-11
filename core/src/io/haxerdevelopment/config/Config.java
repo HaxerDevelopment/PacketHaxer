@@ -1,6 +1,8 @@
 package io.haxerdevelopment.config;
 
-public class Config {
+import java.io.Serializable;
+
+public class Config implements Serializable {
     public String configName = "default";
     public boolean packetEditingEnabled = true;
 
