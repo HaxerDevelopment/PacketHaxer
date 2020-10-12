@@ -1,11 +1,9 @@
 package io.haxerdevelopment.proxy;
 
 import io.haxerdevelopment.Globals;
-import io.haxerdevelopment.Main;
 import io.haxerdevelopment.proxy.logging.LogPacket;
 
 import javax.swing.table.DefaultTableModel;
-import java.awt.*;
 import java.io.*;
 import java.net.*;
 
@@ -17,6 +15,7 @@ public class RequestHandler implements Runnable {
     }
 
     private void handle(Socket socket) throws IOException {
+        Globals.loadManager.threadActivated();
         BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
         String requestData = "";
@@ -128,6 +127,7 @@ public class RequestHandler implements Runnable {
             System.out.println("unknown request type");
         writer.flush();
         writer.close();
+        Globals.loadManager.threadDeactivated();
     }
 
     @Override

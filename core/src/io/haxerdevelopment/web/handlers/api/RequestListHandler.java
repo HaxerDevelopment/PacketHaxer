@@ -1,4 +1,4 @@
-package io.haxerdevelopment.web.handlers;
+package io.haxerdevelopment.web.handlers.api;
 
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
@@ -28,6 +28,7 @@ public class RequestListHandler implements HttpHandler {
         builder.append("]");
 
         byte[] bytes = builder.toString().getBytes();
+        exchange.getResponseHeaders().add("Access-Control-Allow-Origin", "*");
         exchange.sendResponseHeaders(200, bytes.length);
 
         OutputStream os = exchange.getResponseBody();
