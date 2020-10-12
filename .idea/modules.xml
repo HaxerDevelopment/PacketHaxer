@@ -4,7 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/PacketHaxer.iml" filepath="$PROJECT_DIR$/.idea/PacketHaxer.iml" />
       <module fileurl="file://$PROJECT_DIR$/core/core.iml" filepath="$PROJECT_DIR$/core/core.iml" />
-      <module fileurl="file://$PROJECT_DIR$/haxPlugin/haxPlugin.iml" filepath="$PROJECT_DIR$/haxPlugin/haxPlugin.iml" />
     </modules>
   </component>
 </project>

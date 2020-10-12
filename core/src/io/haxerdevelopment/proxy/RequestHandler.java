@@ -1,14 +1,17 @@
 package io.haxerdevelopment.proxy;
 
+import io.haxerdevelopment.Globals;
+import io.haxerdevelopment.Main;
+
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 import java.io.*;
 import java.net.*;
 
 public class RequestHandler implements Runnable {
-
     private Socket socket;
 
-    public RequestHandler(Socket socket)
-    {
+    public RequestHandler(Socket socket) {
         this.socket = socket;
     }
 
@@ -90,8 +93,19 @@ public class RequestHandler implements Runnable {
 
                 writer.write(line); // Send header information
 
-                //while((line = serverReader.readLine()) != null) // Read content of page line-by-line
-                //    writer.write(line); // ...and send it to client
+                String pageContent = ""; // Prepare variable for page content
+
+                while((line = serverReader.readLine()) != null) // Read content of page line-by-line
+                    pageContent += line; // ...and write it into a variable
+
+                // Then we should modify it using existing filters
+                if (Globals.configManager.getActiveConfiguration().packetEditingEnabled) {
+                    pageContent = Globals.replaceManager.replace(url, pageContent);
+                }
+
+                writer.write(pageContent); // And serve to client
+
+                /* // Really sorry, have to remove memes ;)
                 URL urlTemp = new URL("https://www.anilibria.tv");
                 BufferedReader in = new BufferedReader(new InputStreamReader(urlTemp.openStream()));
                 String inputLine, s="";
@@ -100,7 +114,10 @@ public class RequestHandler implements Runnable {
                 while ((inputLine = in.readLine()) != null)
                 {
                     writer.write(inputLine);
-                }
+                } */
+
+                DefaultTableModel model = (DefaultTableModel) Globals.userInterface.table1.getModel();
+                model.addRow(new Object[] {"localhost", url});
                 System.out.println("answered");
             }
             else // If response code is not 200, show sad page ;c
