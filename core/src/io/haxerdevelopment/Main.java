@@ -19,6 +19,7 @@ public class Main {
         // 1. Global (first in first out)
         // 2. Targetted (first in first out)
         // TODO: Make override's priority higher than others'
+        System.out.println(Globals.webServer.accessToken);
         /*ReplaceRule rule = new ReplaceRule();
         rule.type = ReplaceType.QUERY;
         rule.match = "title";
