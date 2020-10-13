@@ -11,14 +11,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-public class UIEimaen {
+public class MainWindow {
     public JTable table1;
     private JPanel panel1;
     private JButton button1;
     public RulesWindow rulesWindow = new RulesWindow();
     //private JTable table2;
 
-    public UIEimaen() {
+    public MainWindow() {
         table1.setModel(new DefaultTableModel(new Object[] {"Source", "Destination"}, 0));
         JFrame frame = new JFrame();
         frame.setSize(640, 310);

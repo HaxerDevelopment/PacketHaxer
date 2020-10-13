@@ -1,10 +1,9 @@
 package io.haxerdevelopment.proxy;
 
 import io.haxerdevelopment.Globals;
-import io.haxerdevelopment.Main;
+import io.haxerdevelopment.proxy.logging.LogPacket;
 
 import javax.swing.table.DefaultTableModel;
-import java.awt.*;
 import java.io.*;
 import java.net.*;
 
@@ -16,6 +15,7 @@ public class RequestHandler implements Runnable {
     }
 
     private void handle(Socket socket) throws IOException {
+        Globals.loadManager.threadActivated();
         BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
         String requestData = "";
@@ -105,16 +105,10 @@ public class RequestHandler implements Runnable {
 
                 writer.write(pageContent); // And serve to client
 
-                /* // Really sorry, have to remove memes ;)
-                URL urlTemp = new URL("https://www.anilibria.tv");
-                BufferedReader in = new BufferedReader(new InputStreamReader(urlTemp.openStream()));
-                String inputLine, s="";
-                s="<html><body style=\"margin: 0px; background: #0e0e0e;\"><img style=\"-webkit-user-select: none;margin: auto;\" src=\"https://memepedia.ru/wp-content/uploads/2019/05/a84.png\"></body></html>";
-
-                while ((inputLine = in.readLine()) != null)
-                {
-                    writer.write(inputLine);
-                } */
+                LogPacket packet = new LogPacket();
+                packet.destination = url;
+                packet.packetBody = pageContent;
+                Globals.logManager.logPackets.add(packet);
 
                 DefaultTableModel model = (DefaultTableModel) Globals.userInterface.table1.getModel();
                 model.addRow(new Object[] {"localhost", url});
@@ -133,6 +127,7 @@ public class RequestHandler implements Runnable {
             System.out.println("unknown request type");
         writer.flush();
         writer.close();
+        Globals.loadManager.threadDeactivated();
     }
 
     @Override
